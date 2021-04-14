@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @RequiredArgsConstructor
 public class ClientConfig {
+
     private final MarvelConfig marvelConfig;
     private final RetrofitConfig config;
 
