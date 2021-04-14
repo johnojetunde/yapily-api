@@ -19,15 +19,10 @@ mvn clean package
 * You can run the artifact (yapily-api-0.0.1.jar)
 * inject the required environmental variables at runtime or via application.properties
 
-```
- MARVEL_PUBLIC_KEY
- MARVEL_PRIVATE_KEY
-```
-
 ### Executing program
 
 ```
-java -jar yapily-api-0.0.1.jar
+env MARVEL_PUBLIC_KEY=publicKeyValue MARVEL_PRIVATE_KEY=privateKeyValue java -jar target/yapily-api-0.0.1.jar
 ```
 
 ## Authors
