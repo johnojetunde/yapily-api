@@ -1,6 +1,7 @@
 package com.yapily.marvel.app.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.yapily.marvel.app.config.TestConfig;
 import com.yapily.marvel.domain.marvelapi.MarvelApiClient;
 import okhttp3.MediaType;
 import okhttp3.ResponseBody;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.SpyBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.web.servlet.MockMvc;
 import retrofit2.adapter.java8.HttpException;
 
@@ -25,6 +27,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
+@Import(TestConfig.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 class CharacterControllerTest {
