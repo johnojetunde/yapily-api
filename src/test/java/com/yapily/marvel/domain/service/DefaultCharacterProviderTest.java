@@ -58,7 +58,6 @@ class DefaultCharacterProviderTest {
         assertThat(result.isPresent()).isTrue();
 
         var character = result.get();
-
         assertThat(character.getId()).isEqualTo(1L);
         assertThat(character.getName()).isEqualTo("Jigsaw");
         assertThat(character.getDescription()).isEqualTo("Jigsaw");
