@@ -52,7 +52,6 @@ public final class RetrofitProvider {
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
-
             long t1 = System.nanoTime();
             Response response = chain.proceed(request);
             long t2 = System.nanoTime();

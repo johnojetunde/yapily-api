@@ -12,6 +12,7 @@ import java.util.Set;
 import static com.google.common.base.Suppliers.memoizeWithExpiration;
 import static java.util.concurrent.TimeUnit.MINUTES;
 
+@SuppressWarnings("Guava")
 @Service
 public class DefaultCharacterService implements CharacterService {
 
@@ -26,9 +27,9 @@ public class DefaultCharacterService implements CharacterService {
         this.cache = cacheSetup();
     }
 
-    @SuppressWarnings("Guava")
-    private Supplier<Set<Long>> cacheSetup() {
-        return memoizeWithExpiration(characterProvider::getAllCharacterIds, cacheConfig.getCharactersExpiryInMinutes(), MINUTES);
+    @PostConstruct
+    public void loadAllCharacterIds() {
+        getCharacterIds();
     }
 
     @Override
@@ -42,8 +43,10 @@ public class DefaultCharacterService implements CharacterService {
                 .orElseThrow(() -> new MarvelNotFoundException("Not found"));
     }
 
-    @PostConstruct
-    public void loadAllCharacterIds() {
-        getCharacterIds();
+    private Supplier<Set<Long>> cacheSetup() {
+        return memoizeWithExpiration(
+                characterProvider::getAllCharacterIds,
+                cacheConfig.getCharactersExpiryInMinutes(),
+                MINUTES);
     }
 }

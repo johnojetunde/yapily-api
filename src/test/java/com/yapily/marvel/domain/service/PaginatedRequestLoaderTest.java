@@ -33,7 +33,7 @@ class PaginatedRequestLoaderTest {
         MockApiRequest apiRequest = Mockito.spy(new MockApiRequest());
         var queryMap = new HashMap<String, Object>();
 
-        Set<Object> result = PaginatedRequestLoader.loadPagedRequest(
+        Set<Object> result = PaginatedRequestService.loadPagedRequest(
                 apiRequest::loadFirstPage,
                 apiRequest::mapper,
                 apiRequest::loadOtherPages,

@@ -17,15 +17,15 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping(value = "/characters", produces = APPLICATION_JSON_VALUE)
 public class CharacterController {
 
-    private final CharacterService marvelCharacterService;
+    private final CharacterService characterService;
 
     @GetMapping
     public Set<Long> getCharacterIds() {
-        return marvelCharacterService.getCharacterIds();
+        return characterService.getCharacterIds();
     }
 
     @GetMapping("/{characterId}")
     public MarvelCharacter getCharacter(@PathVariable("characterId") Long characterId) {
-        return marvelCharacterService.getCharacter(characterId);
+        return characterService.getCharacter(characterId);
     }
 }
