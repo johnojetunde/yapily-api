@@ -1,6 +1,5 @@
 package com.yapily.marvel.app.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yapily.marvel.app.config.TestConfig;
 import com.yapily.marvel.domain.marvelapi.MarvelApiClient;
 import okhttp3.MediaType;
@@ -33,8 +32,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class CharacterControllerTest {
     @Autowired
     private MockMvc mvc;
-    @Autowired
-    private ObjectMapper objectMapper;
     @SpyBean
     private MarvelApiClient marvelApiClient;
 
