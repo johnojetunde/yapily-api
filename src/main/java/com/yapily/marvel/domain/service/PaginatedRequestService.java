@@ -28,10 +28,10 @@ public class PaginatedRequestService {
                 .thenApply(res -> {
                     var pagedResult = res.getData();
                     var mappedResult = new HashSet<>(mapper.apply(res.getData().getResults()));
-                    var allOtherCharacterIds =
+                    var loadedResults =
                             loadAllOtherPages(pagedResult.getTotal(), pagedResult.getLimit(), queryMap, loadSpecificPageFunction);
 
-                    mappedResult.addAll(allOtherCharacterIds);
+                    mappedResult.addAll(loadedResults);
                     log.debug("-- successfully fetched {} results --", mappedResult.size());
 
                     return mappedResult;
@@ -48,7 +48,7 @@ public class PaginatedRequestService {
 
         List<CompletableFuture<Collection<T>>> requestFutures = new ArrayList<>();
         for (int i = 1; i <= pages; i++) {
-            log.debug("fetching records from {} -  {}", offset, offset + limit);
+            log.debug("fetching records from {} - {}", offset, offset + limit);
             requestFutures.add(
                     loadSpecificPageFunction.apply(offset, limit, queryMap)
             );
