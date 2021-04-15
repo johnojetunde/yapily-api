@@ -14,6 +14,12 @@ public class PaginatedRequestService {
     private PaginatedRequestService() {
     }
 
+    /**
+     * @param loadFirstPageFunction    function that helps load the first page so as to get the Paged information
+     * @param mapper                   Mapper function that maps the response to specified Java POJO
+     * @param loadSpecificPageFunction TriFunction that takes in 3 input (offset, limit, queryMap) to load all the subsequent pages
+     * @param queryMap                 QueryMap which contains the auth details
+     */
     public static <T> CompletableFuture<Set<T>> loadPagedRequest(Function<Map<String, Object>, CompletableFuture<Response>> loadFirstPageFunction,
                                                                  Function<List<Object>, List<T>> mapper,
                                                                  TriFunction<Long, Long, Map<String, Object>, CompletableFuture<Collection<T>>> loadSpecificPageFunction,
