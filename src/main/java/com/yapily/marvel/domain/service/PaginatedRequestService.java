@@ -55,7 +55,7 @@ public class PaginatedRequestService {
             offset += limit;
         }
 
-        return requestFutures.stream()
+        return requestFutures.parallelStream()
                 .map(CompletableFuture::join)
                 .flatMap(Collection::stream)
                 .collect(toList());
